@@ -1,0 +1,169 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h3 class="modal-subtitle">Employee Registration</h3>
+    <p class="modal-description">
+      Complete the form below to set up your profile. The information you provide will be stored securely and used for employee management purposes.
+    </p>
+
+    <form (ngSubmit)="submitForm()" #form="ngForm">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Username</label>
+                <input
+                    type="text"
+                    placeholder="Enter username here"
+                    [(ngModel)]="formData.username"
+                    name="username"
+                    #username="ngModel"
+                    required
+                />
+                <div *ngIf="username.invalid && username.touched" class="text-red-500 text-sm">
+                    First name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    placeholder="Enter email here"
+                    [(ngModel)]="formData.email"
+                    name="email"
+                    #email="ngModel"
+                    required
+                />
+                <div *ngIf="email.invalid && email.touched" class="text-red-500 text-sm">
+                    Email is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>First name</label>
+                <input
+                    type="text"
+                    placeholder="Enter first name here"
+                    [(ngModel)]="formData.firstName"
+                    name="firstName"
+                    #firstName="ngModel"
+                    required
+                />
+                <div *ngIf="firstName.invalid && firstName.touched" class="text-red-500 text-sm">
+                    First name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Last name</label>
+                <input
+                    type="text"
+                    placeholder="Enter last name here"
+                    [(ngModel)]="formData.lastName"
+                    name="lastName"
+                    #lastName="ngModel"
+                    required
+                />
+                <div *ngIf="lastName.invalid && lastName.touched" class="text-red-500 text-sm">
+                    Last Name is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Birth date</label>
+                <input type="date" [(ngModel)]="formData.birthDate" 
+                #birthDate="ngModel" name="birthDate" required appDateValidator/>
+                <div *ngIf="birthDate.invalid && birthDate.touched" class="text-red-500 text-sm">
+                    <span *ngIf="birthDate.errors?.['required']">Date is required</span>
+                    <span *ngIf="birthDate.errors?.['dateNotValid']">Date cannot be later than today</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Basic Salary</label>
+                <input
+                    type="number"
+                    placeholder="Enter basic salary here"
+                    [(ngModel)]="formData.basicSalary"
+                    name="basicSalary"
+                    #basicSalary="ngModel"
+                    required
+                />
+                <div *ngIf="basicSalary.invalid && basicSalary.touched" class="text-red-500 text-sm">
+                    Basic salary is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-rows-dropdown">
+            <div class="form-group-dropdown">
+                <label for="group">Group</label>
+                <select
+                    id="group"
+                    class="form-select"
+                    name="group"
+                    aria-placeholder="Select group"
+                    [(ngModel)]="formData.group"
+                    #group="ngModel"
+                    required
+                >
+                    <option value="" disabled>Select group</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Operations">Operations</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Support">Support</option>
+                    <option value="Sales">Sales</option>
+                    <option value="IT">IT</option>
+                    <option value="Business Analyst">Business Analyst</option>
+                    <option value="Product Manager">Product Manager</option>
+                    <option value="System Analyst">System Analyst</option>
+                </select>
+                <div *ngIf="group.invalid && (group.touched || form.submitted)" class="error">
+                    Group wajib diisi
+                </div>
+            </div>
+
+            <div class="form-group-dropdown">
+                <label for="status">Status</label>
+                <select
+                    id="status"
+                    class="form-select"
+                    name="status"
+                    [(ngModel)]="formData.status"
+                    #status="ngModel"
+                    required
+                >
+                    <option value="" disabled>Select status</option>
+                    <option value="Active">Active</option>
+                    <option value="Non-Active">Non-Active</option>
+                </select>
+                <div *ngIf="status.invalid && (status.touched || form.submitted)" class="error">
+                    Status is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-rows-dropdown">
+            <div class="form-group-dropdown">
+                <label for="desc">Description</label>
+                <textarea
+                    id="desc"
+                    name="desc"
+                    [(ngModel)]="formData.desc"
+                    placeholder="Enter description here"
+                    #desc="ngModel"
+                    required
+                ></textarea>
+                <div *ngIf="desc.invalid && (desc.touched || form.submitted)" class="error">
+                    Description is required
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-actions">
+            <button type="button" class="back-btn" (click)="handleClose()">Back</button>
+            <button type="submit" class="next-btn" [disabled]="form.invalid">Submit</button>
+        </div>
+    </form>
+  </div>
+</div>

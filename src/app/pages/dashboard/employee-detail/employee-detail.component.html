@@ -1,0 +1,56 @@
+<div class="employee-detail-container">
+    <div class="modal">
+    <h3 >Employee Registration</h3>
+    <div class="employee-card">
+        <div class="employee-header">
+        <h3>{{ employee.firstName }} {{ employee.lastName }}</h3>
+        <span class="status" [ngClass]="employee.status === 'Active' ? 'active' : 'inactive'">
+            {{ employee.status }}
+        </span>
+        </div>
+
+        <div class="employee-info">
+        <div class="info-row">
+            <label>ID:</label>
+            <span>{{ employee.id }}</span>
+        </div>
+
+        <div class="info-row">
+            <label>Username:</label>
+            <span>{{ employee.username }}</span>
+        </div>
+
+        <div class="info-row">
+            <label>Email:</label>
+            <span>{{ employee.email }}</span>
+        </div>
+
+        <div class="info-row">
+            <label>Birth Date:</label>
+            <span>{{ employee.birthDate | date: 'dd MMM yyyy' }}</span>
+        </div>
+
+        <div class="info-row">
+            <label>Group:</label>
+            <span>{{ employee.group }}</span>
+        </div>
+
+        <div class="info-row">
+            <label>Basic Salary:</label>
+            <span class="salary">
+                {{ employee.basicSalary | currency:'IDR':'symbol':'1.0-0':'id' }}
+            </span>
+        </div>
+
+        <div class="info-row">
+            <label>Description:</label>
+            <span>{{ employee.desc }}</span>
+        </div>
+        </div>
+
+        <div class="action-buttons">
+        <button class="btn back" (click)="goBack()">Back</button>
+        </div>
+    </div>
+    </div>
+</div>

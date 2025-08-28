@@ -5,9 +5,12 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  template: `
+    <div class="min-h-screen bg-gray-100">
+      <router-outlet></router-outlet>
+    </div>
+  `,
 })
 export class AppComponent {
-  title = 'employee-management';
+  
 }

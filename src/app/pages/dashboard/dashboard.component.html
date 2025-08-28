@@ -1,0 +1,147 @@
+<div class="container">
+  <div>
+    <h1 style="text-align: center;">Employee Dashboard</h1>
+  </div>
+
+  <div class="actions">
+    <div class="search-filter">
+      <input
+        style="border: 1px solid #3b82f6"
+        type="text"
+        placeholder="Cari pegawai..."
+        [(ngModel)]="searchQuery"
+        (input)="applyFilter()"
+      />
+    </div>
+
+    <div class="new-client-cont">
+      <button class="new-client-btn" (click)="openAddModal()">
+        + New Employee
+    </button>
+
+    </div>
+  </div>
+
+  <div class="pagination-controls">
+    <label>
+      Show
+      <select [(ngModel)]="itemsPerPage" (change)="updatePagination()">
+        <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+      entries
+    </label>
+  </div>
+
+  <div class="spacer"></div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th (click)="sortData('id')">No
+            <span *ngIf="sortColumn === 'id'">
+              {{ sortDirection === 'asc' ? '▲' : '▼' }}
+            </span>
+          </th>
+          <th (click)="sortData('username')">
+            Username
+            <span *ngIf="sortColumn === 'username'">
+              {{ sortDirection === 'asc' ? '▲' : '▼' }}
+            </span>
+          </th>
+          <th (click)="sortData('firstName')">
+            First name
+            <span *ngIf="sortColumn === 'firstName'">
+              {{ sortDirection === 'asc' ? '▲' : '▼' }}
+            </span>
+          </th>
+          <th (click)="sortData('lastName')">
+            Last name
+            <span *ngIf="sortColumn === 'lastName'">
+              {{ sortDirection === 'asc' ? '▲' : '▼' }}
+            </span>
+          </th>
+          <th (click)="sortData('email')">
+            Email
+            <span *ngIf="sortColumn === 'email'">
+              {{ sortDirection === 'asc' ? '▲' : '▼' }}
+            </span>
+          </th>
+          <th (click)="sortData('birthDate')">
+            Birth date
+            <span *ngIf="sortColumn === 'birthDate'">
+              {{ sortDirection === 'asc' ? '▲' : '▼' }}
+            </span>
+          </th>
+          <th (click)="sortData('status')">
+            Status
+            <span *ngIf="sortColumn === 'status'">
+              {{ sortDirection === 'asc' ? '▲' : '▼' }}
+            </span>
+          </th>
+          <th> Action </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let user of pagedEmployees; let i = index"
+        >
+          <td>{{ i + 1}}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.birthDate | date:'dd MMM yyyy' }}</td>
+          <td>
+            <span
+              class="status"
+              [ngClass]="{
+                'activated': user.status === 'Active',
+                'suspended': user.status === 'Non-Active'
+              }"
+            >
+              {{ user.status }}
+            </span>
+          </td>
+
+          <td class="action-btns">
+            <button (click)="openEditModal(user)">
+              <lucide-icon class="pencil" name="Pencil"></lucide-icon>
+            </button>
+            <button 
+              class="p-2 text-blue-500 hover:text-blue-700" 
+              (click)="openDetailModal(user)">
+              <lucide-icon class="eye" name="eye"></lucide-icon>
+            </button>
+            <button (click)="onDelete(user)">
+              <lucide-icon class="trash" name="Trash"></lucide-icon>
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination">
+  <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">
+    Prev
+  </button>
+
+  <button
+    *ngFor="let page of [].constructor(totalPages); let i = index"
+    (click)="setPage(i+1)"
+  >
+     {{ i+1 }}
+  </button>
+
+  <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+    Next
+  </button>
+</div>
+
+    <p>Created by Alma Alfiatul Inayah</p>
+
+</div>
