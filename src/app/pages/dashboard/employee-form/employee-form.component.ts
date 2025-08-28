@@ -29,7 +29,7 @@ export class EmployeeFormComponent implements OnInit{
     status: '',
     basicSalary: '',
     group: '',
-    desc: ''
+    description: ''
   };
 
   constructor(
