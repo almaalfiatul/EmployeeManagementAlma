@@ -8,5 +8,5 @@ interface Employee {
   status?: string;
   basicSalary?: number;
   group?: string;
-  desc?: string;
+  description?: string;
 }
