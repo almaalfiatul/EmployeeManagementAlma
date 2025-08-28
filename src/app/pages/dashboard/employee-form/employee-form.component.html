@@ -147,14 +147,14 @@
             <div class="form-group-dropdown">
                 <label for="desc">Description</label>
                 <textarea
-                    id="desc"
-                    name="desc"
-                    [(ngModel)]="formData.desc"
+                    id="description"
+                    name="description"
+                    [(ngModel)]="formData.description"
                     placeholder="Enter description here"
                     #desc="ngModel"
                     required
                 ></textarea>
-                <div *ngIf="desc.invalid && (desc.touched || form.submitted)" class="error">
+                <div *ngIf="description.invalid && (description.touched || form.submitted)" class="error">
                     Description is required
                 </div>
             </div>
