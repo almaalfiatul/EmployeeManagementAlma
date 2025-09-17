@@ -151,7 +151,7 @@
                     name="description"
                     [(ngModel)]="formData.description"
                     placeholder="Enter description here"
-                    #desc="ngModel"
+                    #description="ngModel"
                     required
                 ></textarea>
                 <div *ngIf="description.invalid && (description.touched || form.submitted)" class="error">
